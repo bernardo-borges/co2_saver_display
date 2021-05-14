@@ -23,8 +23,8 @@ class EmissionController extends AbstractController
              $emissionSaved=0;
              if($json_array["success"]){
                 $emissionSaved=$json_array["total_co2"];
-             }
-            
+             }          
+
             return $this->render('emission/index.html.twig', [
                 'number' => $emissionSaved,
             ]);
@@ -34,7 +34,29 @@ class EmissionController extends AbstractController
             throw new $exception;
 
         }
+    }
 
-     
+
+    public static function number():Response{
+
+        try{
+
+            $url = 'https://events.scoocs.co/public/total_co2';
+            $response = file_get_contents($url);
+             $json_array=json_decode($response,true); 
+             $emissionSaved=0;
+             if($json_array["success"]){
+                $emissionSaved=$json_array["total_co2"];
+             }
+            
+            return new Response($emissionSaved);
+
+        }catch(Exception $exception ){
+
+            throw new $exception;
+
+        }
+
+
     }
 }

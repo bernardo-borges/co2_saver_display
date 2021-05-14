@@ -1,3 +1,7 @@
 index:
    path: /
    controller: App\Controller\EmissionController::index
+
+number:
+   path: /number
+   controller: App\Controller\EmissionController:number

@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<meta http-equiv="refresh" content="10">
 
 <link href="{{ asset('css/style.css') }}" rel="stylesheet"/>
 
+<script src="{{ asset('js/emissionSaved.js') }}"></script>
 
 <style>
     .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
@@ -24,7 +24,7 @@
 
                     
                         <div class="header-content mx-auto" style="color:white">
-                            <h1 class="mb-5">Toghether we saved {{number}} Kg in C02 Emissions !</h1>
+                            <h1 class="mb-5">Toghether we saved <span id="number">{{number}}</span> Kg in C02 Emissions !</h1>
                             <a class="btn btn-primary py-3 px-4 rounded-pill js-scroll-trigger" href="https://scoocs.co/">Join Scoocs !</a>
                         </div>
                     </div>

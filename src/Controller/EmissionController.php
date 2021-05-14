@@ -15,47 +15,41 @@ class EmissionController extends AbstractController
     public function index(): Response
     {
 
-        try{
+        try {
 
-            $emissionSaved= $this->getNumber();
+            $emissionSaved = $this->getNumber();
             return $this->render('emission/index.html.twig', [
                 'number' => $emissionSaved,
             ]);
-
-        }catch(Exception $exception ){
+        } catch (Exception $exception) {
 
             throw new $exception;
-
         }
     }
 
 
-    public  function number():Response{
+    public  function number(): Response
+    {
 
-        try{
-            $emissionSaved= $this->getNumber();
-            
+        try {
+            $emissionSaved = $this->getNumber();
             return new Response($emissionSaved);
-
-        }catch(Exception $exception ){
+        } catch (Exception $exception) {
 
             throw new $exception;
-
         }
-
-
     }
 
 
-    function getNumber(){
+    function getNumber()
+    {
         $url = 'https://events.scoocs.co/public/total_co2';
         $response = file_get_contents($url);
-         $json_array=json_decode($response,true); 
-         $emissionSaved=0;
-         if($json_array["success"]){
-            $emissionSaved=$json_array["total_co2"];
-         }
-        return $emissionSaved;
+        $json_array = json_decode($response, true);
+        $emissionSaved = 0;
+        if ($json_array["success"]) {
+            $emissionSaved = $json_array["total_co2"];
         }
-
+        return $emissionSaved;
+    }
 }
